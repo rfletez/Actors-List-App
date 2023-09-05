@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ActorsService from '../services/ActorsService';
 
 export default class ListActorsComponent extends Component {
   
@@ -8,6 +9,14 @@ export default class ListActorsComponent extends Component {
         this.state = {
             actors: []
         }
+    }
+
+
+    componentDidMount() {
+        //Best place to call REST APIs in this method.
+        ActorsService.getActors().then((response) => {
+            this.setState({ actors: response.data });
+        });
     }
 
     render() {
@@ -28,13 +37,13 @@ export default class ListActorsComponent extends Component {
 
                 <tbody>
                     {
-                        this.state.actors.map(actorObj => {
+                        this.state.actors.map(actorObj => 
                             <tr key={actorObj.id}>
                                 <td>{actorObj.firstName}</td>
                                 <td>{actorObj.lastName}</td>
                                 <td>{actorObj.emailId}</td>
                             </tr>
-                        })
+                        )
                     }
                 </tbody>
             </table>
