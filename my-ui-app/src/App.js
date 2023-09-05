@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Switch } from "react-router-dom";
 import ListActorsComponent from './components/ListActorsComponent';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import CreateActor from './components/CreateActor';
 
 function App() {
   return (
@@ -16,8 +17,9 @@ function App() {
 
             <div className='container'>
                 <Switch>
-                    <Route path='/' Component={ListActorsComponent}></Route>
+                    <Route path='/' exact Component={ListActorsComponent}></Route>
                     <Route path='/actors' Component={ListActorsComponent}></Route>
+                    <Route path='/create-actor' Component={CreateActor}></Route>
                 </Switch>
             </div>
 

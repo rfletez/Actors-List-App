@@ -9,6 +9,8 @@ export default class ListActorsComponent extends Component {
         this.state = {
             actors: []
         }
+
+        this.createActor = this.createActor.bind(this);
     }
 
 
@@ -19,10 +21,18 @@ export default class ListActorsComponent extends Component {
         });
     }
 
+    createActor() {
+        this.props.history.push('/create-actor');
+    }
+
     render() {
     return (
       <div>
         <h2 className='text-center'>A-List Actors</h2>
+
+        <div className='row'>
+            <button className='btn btn-primary' onClick={this.createActor()}>Create Actor</button>
+        </div>
 
         <div className='row'>
             <table className='table table-striped table-bordered'>
