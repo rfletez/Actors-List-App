@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { useHistory, useNavigate } from "react-router-dom";
 import ActorsService from '../services/ActorsService';
 
 export default class ListActorsComponent extends Component {
@@ -22,45 +24,46 @@ export default class ListActorsComponent extends Component {
     }
 
     createActor() {
+        //This push() is not working, probably deprecated.
         this.props.history.push('/create-actor');
     }
 
     render() {
-    return (
-      <div>
-        <h2 className='text-center'>A-List Actors</h2>
+        return (
+        <div>
+            <h2 className='text-center'>A-List Actors</h2>
 
-        <div className='row'>
-            <button className='btn btn-primary' onClick={this.createActor()}>Create Actor</button>
+            <div className='row'>
+                <a className='btn btn-primary' href='http://localhost:3000/create-actor'>Create Actor</a>
+            </div>
+
+            <div className='row'>
+                <table className='table table-striped table-bordered'>
+                    <thead>
+                        <tr>
+                            <th>Actor's First Name</th>
+                            <th>Actor's Last Name</th>
+                            <th>Actor's Email</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {
+                            this.state.actors.map(actorObj => 
+                                <tr key={actorObj.id}>
+                                    <td>{actorObj.firstName}</td>
+                                    <td>{actorObj.lastName}</td>
+                                    <td>{actorObj.emailId}</td>
+                                </tr>
+                            )
+                        }
+                    </tbody>
+                </table>
+            </div>
+
         </div>
-
-        <div className='row'>
-            <table className='table table-striped table-bordered'>
-                <thead>
-                    <tr>
-                        <th>Actor's First Name</th>
-                        <th>Actor's Last Name</th>
-                        <th>Actor's Email</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {
-                        this.state.actors.map(actorObj => 
-                            <tr key={actorObj.id}>
-                                <td>{actorObj.firstName}</td>
-                                <td>{actorObj.lastName}</td>
-                                <td>{actorObj.emailId}</td>
-                            </tr>
-                        )
-                    }
-                </tbody>
-            </table>
-        </div>
-
-      </div>
-    )
+        )
   }
 
 }
