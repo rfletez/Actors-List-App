@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import ActorsService from '../services/ActorsService';
+
 
 export default class CreateActor extends Component {
 
@@ -39,6 +41,11 @@ export default class CreateActor extends Component {
             emailId: this.state.emailId
         }
         console.log("Actor details => " + JSON.stringify(actorObj));
+
+        ActorsService.createActors(actorObj).then(response => {
+            //this.props.history.push('http://localhost:3000/actor');
+            //this.props.router.navigate('http://localhost:3000/actor');
+        });
     }
 
     cancel() {
