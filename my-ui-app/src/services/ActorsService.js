@@ -10,6 +10,10 @@ class ActorsService {
     createActors(actor) {
         return axios.post(ACTORS_API_BASEURL, actor);
     }
+
+    getActorByID(actorId) {
+        return axios.get(ACTORS_API_BASEURL + "/" + actorId)
+    }
 }
 
 export default new ActorsService();

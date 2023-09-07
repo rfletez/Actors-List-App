@@ -1,15 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import ActorsService from '../services/ActorsService';
-
 import withNavigateHook from './withNavigateHook';
 
+import ShowIDFromParam from './ShowIDFromParam';
 
-export class CreateActor extends Component {
+export class UpdateActor extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
+            id: this.props.match.params.id,
             firstName: '',
             lastName: '',
             emailId: ''
@@ -19,7 +20,34 @@ export class CreateActor extends Component {
         this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
         this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
         this.changeEmailIdHandler = this.changeEmailIdHandler.bind(this);
-        this.saveActor = this.saveActor.bind(this);
+        this.updateActor = this.updateActor.bind(this);
+    }
+
+    componentDidMount() {
+        //getActorByID() returns a Promise, so use then()
+        ActorsService.getActorByID(this.state.id).then((response) => {
+            let actorObj = response.data;
+            this.setState({ 
+                firstName: actorObj.firstName,
+                lastName: actorObj.lastName,
+                emailId: actorObj.emailId
+            });
+        });
+
+        //console.log("Param ID is: " + this.props.match.params.id);
+    }
+
+    updateActor = (event) => {
+        event.preventDefault();
+
+        let actorObj = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            emailId: this.state.emailId
+        }
+        console.log("Actor details => " + JSON.stringify(actorObj));
+        console.log("Path id: " + this.state.id);
+
     }
 
     changeFirstNameHandler = (event) => {
@@ -34,26 +62,7 @@ export class CreateActor extends Component {
         this.setState({ emailId: event.target.value });
     }
 
-    saveActor = (event) => {
-        event.preventDefault();
-
-        let actorObj = {
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            emailId: this.state.emailId
-        }
-        console.log("Actor details => " + JSON.stringify(actorObj));
-
-        ActorsService.createActors(actorObj).then(response => {
-            //this.props.history.push('http://localhost:3000/actor');
-            //this.props.router.navigate('http://localhost:3000/actor');
-
-            this.props.navigation('/actors');
-        });
-    }
-
     cancel() {
-        //this.props.history.push('/actors');
         this.props.navigation('/actors');
     }
 
@@ -64,7 +73,7 @@ export class CreateActor extends Component {
                 <div className='row'>
                     <div className='card col-md-6 offset-md-3 offset-md-3'>
 
-                        <h3 className='text-center'>Add Actor</h3>
+                        <h3 className='text-center'>Update Actor</h3>
                         
                         <div className='card-body'>
                             <form>
@@ -92,7 +101,7 @@ export class CreateActor extends Component {
                                     />
                                 </div>
                                 
-                                <button className='btn btn-success' onClick={this.saveActor}>Submit</button>
+                                <button className='btn btn-success' onClick={this.updateActor}>Save</button>
                                 <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
                             </form>
                         </div>
@@ -102,6 +111,6 @@ export class CreateActor extends Component {
         </div>
         )
     }
-
+    
 }
-export default withNavigateHook(CreateActor);
+export default withNavigateHook(UpdateActor);

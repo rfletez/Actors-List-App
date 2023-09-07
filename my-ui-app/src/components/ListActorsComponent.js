@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useHistory, useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import ActorsService from '../services/ActorsService';
 
-export default class ListActorsComponent extends Component {
+import withNavigateHook from './withNavigateHook';
+
+export class ListActorsComponent extends Component {
   
     constructor(props) {
         super(props);
@@ -13,6 +16,7 @@ export default class ListActorsComponent extends Component {
         }
 
         this.createActor = this.createActor.bind(this);
+        this.updateActor = this.updateActor.bind(this);
     }
 
 
@@ -25,7 +29,14 @@ export default class ListActorsComponent extends Component {
 
     createActor() {
         //This push() is not working, probably deprecated.
-        this.props.history.push('/create-actor');
+        //this.props.history.push('/create-actor');
+
+        this.props.navigation('/create-actor');
+    }
+
+    updateActor(id) {
+        //this.props.history.push(`/update-actor/${id}`);
+        this.props.navigation(`/update-actor/${id}`);
     }
 
     render() {
@@ -33,8 +44,8 @@ export default class ListActorsComponent extends Component {
         <div>
             <h2 className='text-center'>A-List Actors</h2>
 
-            <div className='row'>
-                <a className='btn btn-primary' href='http://localhost:3000/create-actor'>Create Actor</a>
+            <div>
+                <button className='btn btn-primary' onClick={this.createActor}>Create Actor</button>
             </div>
 
             <div className='row'>
@@ -55,6 +66,13 @@ export default class ListActorsComponent extends Component {
                                     <td>{actorObj.firstName}</td>
                                     <td>{actorObj.lastName}</td>
                                     <td>{actorObj.emailId}</td>
+                                    <td> 
+                                        
+                                            <button 
+                                                onClick={() => this.updateActor(actorObj.id)} 
+                                                className='btn btn-info'>Update</button> 
+                                        
+                                    </td>
                                 </tr>
                             )
                         }
@@ -67,3 +85,5 @@ export default class ListActorsComponent extends Component {
   }
 
 }
+
+export default withNavigateHook(ListActorsComponent);

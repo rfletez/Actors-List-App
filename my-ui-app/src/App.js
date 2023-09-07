@@ -7,6 +7,7 @@ import ListActorsComponent from './components/ListActorsComponent';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import CreateActor from './components/CreateActor';
+import UpdateActor from './components/UpdateActor';
 
 function App() {
   return (
@@ -20,12 +21,14 @@ function App() {
                     <Route path='/' exact element={<ListActorsComponent/>}></Route>
                     <Route path='/actors' element={<ListActorsComponent/>}></Route>
                     <Route path='/create-actor' element={<CreateActor/>}></Route>
+                    <Route path='/update-actor/:id' element={<UpdateActor/>}></Route>
                 </Routes>
             </div>
 
           <Footer/>
       </Router>
     </div>
+
   );
 }
 
