@@ -14,6 +14,10 @@ class ActorsService {
     getActorByID(actorId) {
         return axios.get(ACTORS_API_BASEURL + "/" + actorId)
     }
+
+    updateActor(actor, actorId) {
+        return axios.put(ACTORS_API_BASEURL + "/" + actorId, actor);
+    }
 }
 
 export default new ActorsService();

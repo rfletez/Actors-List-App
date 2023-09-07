@@ -46,8 +46,11 @@ export class UpdateActor extends Component {
             emailId: this.state.emailId
         }
         console.log("Actor details => " + JSON.stringify(actorObj));
-        console.log("Path id: " + this.state.id);
+        //console.log("Path id: " + this.state.id);
 
+        ActorsService.updateActor(actorObj, this.state.id).then(response => {
+            this.props.navigation('/actors');
+        });
     }
 
     changeFirstNameHandler = (event) => {
