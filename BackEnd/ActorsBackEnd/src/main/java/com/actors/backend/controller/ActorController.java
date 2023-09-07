@@ -1,10 +1,13 @@
 package com.actors.backend.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -67,5 +70,16 @@ public class ActorController {
 	}
 	
 	//delete actor REST API
-	
+	@DeleteMapping("/actors/{id}")
+	public ResponseEntity<Map<String, Boolean>> deleteActor(@PathVariable("id") Long id) {
+		Actor actorObj = actorRepo.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Actor is not found with id: " + id));
+		
+		actorRepo.delete(actorObj);
+		
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("Deleted actor", Boolean.TRUE);
+		
+		return ResponseEntity.ok(response);
+	}
 }
