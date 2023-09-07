@@ -18,6 +18,10 @@ class ActorsService {
     updateActor(actor, actorId) {
         return axios.put(ACTORS_API_BASEURL + "/" + actorId, actor);
     }
+
+    deleteActor(actorId) {
+        return axios.delete(ACTORS_API_BASEURL + "/" + actorId);
+    }
 }
 
 export default new ActorsService();
