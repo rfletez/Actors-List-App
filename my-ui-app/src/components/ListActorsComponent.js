@@ -18,6 +18,7 @@ export class ListActorsComponent extends Component {
         this.createActor = this.createActor.bind(this);
         this.updateActor = this.updateActor.bind(this);
         this.deleteActor = this.deleteActor.bind(this);
+        this.viewActor = this.viewActor.bind(this);
     }
 
 
@@ -47,6 +48,10 @@ export class ListActorsComponent extends Component {
                 actors: this.state.actors.filter(actorObj => actorObj.id !== id)
             });
         });
+    }
+
+    viewActor(id) {
+        this.props.navigation(`/update-actor/${id}`);
     }
 
 
@@ -86,8 +91,13 @@ export class ListActorsComponent extends Component {
                                             </button> 
 
                                             <button style={{ marginLeft: "10px" }} onClick={() => this.deleteActor(actorObj.id)} 
-                                                className='btn btn-info'>
+                                                className='btn btn-danger'>
                                                     Delete
+                                            </button>
+
+                                            <button style={{ marginLeft: "10px" }} onClick={() => this.vieweActor(actorObj.id)} 
+                                                className='btn btn-info'>
+                                                    View
                                             </button>
                                     </td>
                                 </tr>

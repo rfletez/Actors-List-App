@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import CreateActor from './components/CreateActor';
 import UpdateActor from './components/UpdateActor';
+import ViewActorDetails from './components/ViewActorDetails';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
                     <Route path='/actors' element={<ListActorsComponent/>}></Route>
                     <Route path='/create-actor' element={<CreateActor/>}></Route>
                     <Route path='/update-actor/:id' element={<UpdateActor/>}></Route>
+                    <Route path='/view-actor/:id' element={<ViewActorDetails/>}></Route>
                 </Routes>
             </div>
 
