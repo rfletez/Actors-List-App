@@ -7,24 +7,27 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name="user")
 public class UserEntity {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="user_id", length = 45)
 	private int user_id;
 	
 	@Column(name="user_name", length = 255)
+	@NotNull(message="Username cannot be null")
 	private String user_name;
 	
 	@Column(name="email", length = 255)
-	@Email
+	@NotNull(message="Email Address cannot be null")
 	private String email;
 	
 	@Column(name="password", length = 255)
+	@NotNull(message="Password cannot be null")
 	private String password;
 	
 	
