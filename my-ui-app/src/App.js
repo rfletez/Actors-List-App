@@ -12,6 +12,9 @@ import ViewActorDetails from './components/ViewActorDetails';
 
 import Login from './Login/Login';
 import Register from './Login/Register';
+import LoginActorComponent from './Login/LoginActorComponent';
+import RegisterActorComponent from './Login/RegisterActorComponent'
+import StartingPage from './Login/StartingPage';
 
 
 function App() {
@@ -23,8 +26,9 @@ function App() {
 
             <div className='container'>
                 <Routes>
-                    <Route path='/' exact element={<Login/>}></Route>
-                    <Route path='/register' element={<Register/>}></Route>
+                    <Route path='/' exact element={<StartingPage/>}></Route>
+                    <Route path='/login' element={<LoginActorComponent/>}></Route>
+                    <Route path='/register' element={<RegisterActorComponent/>}></Route>
 
                     <Route path='/actors' element={<ListActorsComponent/>}></Route>
                     <Route path='/create-actor' element={<CreateActor/>}></Route>
