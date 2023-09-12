@@ -50,7 +50,6 @@ public class ActorController {
 		Actor actorObj = actorRepo.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Actor is not found with id: " + id));
 		
-		
 		return ResponseEntity.ok(actorObj);
 	}
 	

@@ -6,6 +6,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table
@@ -16,12 +20,21 @@ public class Actor {
 	private long id;
 	
 	@Column(name = "first_name")
+	@NotNull(message = "First name cannot be null")
+	@NotEmpty(message = "First name cannot be empty")
+	@Size(min = 3, max = 40, message = "First name must be between 3 and 40 characters long")
 	private String firstName;
 	
 	@Column(name = "last_name")
+	@NotNull(message = "Last name cannot be null")
+	@NotEmpty(message = "Last name cannot be empty")
+	@Size(min = 3, max = 40, message = "Last name must be between 3 and 40 characters long")
 	private String lastName;
 	
 	@Column(name = "email_id")
+	@Email
+	@NotNull(message = "Email address cannot be null")
+	@NotEmpty(message = "Email address cannot be empty")
 	private String emailId;
 	
 	public Actor() {
