@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { React, useState } from "react";
 import axios from "axios";
 
 function Register() {
@@ -24,7 +24,7 @@ function Register() {
       }
 
     return(
-        <React.Fragment>
+        <div>
             <div class="container mt-4" >
             <div class="card">
                 
@@ -69,7 +69,7 @@ function Register() {
                 </form>
                 </div>
             </div>
-        </React.Fragment>
+        </div>
     );
 }
 
