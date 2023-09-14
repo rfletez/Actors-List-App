@@ -22,6 +22,7 @@ import com.actors.backend.repository.ActorRepository;
 
 import jakarta.validation.Valid;
 
+
 @CrossOrigin(origins = "http://localhost:3000/")
 @RestController
 @RequestMapping("/api/v1/")
@@ -29,6 +30,27 @@ public class ActorController {
 	
 	@Autowired
 	private ActorRepository actorRepo;
+	
+	/*
+	 * @PostMapping(path = "/save")
+	public String saveUser(@Valid @RequestBody UserDTO userDTO) {
+		String id = userService.addUser(userDTO);
+		return id;
+	}
+	
+	@PostMapping(path = "/login")
+	public ResponseEntity<?> loginUser(@RequestBody LoginDTO loginDTO) {
+		LoginResponse loginMessage = userService.loginUser(loginDTO);
+		return ResponseEntity.ok(loginMessage);
+	}
+	
+	@PostMapping(path = "/actors/save")
+	public String saveUser(@Valid @RequestBody Actor actor) {
+		String userCredentials = actorRepo.save(actor).toString();
+		return userCredentials;
+	}
+	 * */
+	
 
 	
 	//REST API to get all actors
@@ -38,7 +60,7 @@ public class ActorController {
 	}
 	
 	//Create actor REST API
-	@PostMapping("/actors")
+	@PostMapping("/actors/save")
 	public Actor createActor(@Valid @RequestBody Actor actor) {
 		return actorRepo.save(actor);
 	}

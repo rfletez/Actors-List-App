@@ -26,7 +26,7 @@ function LoginActorComponent() {
              } 
              else if(res.data.message == "Login Success")
              { 
-                navigate('/home');
+                navigate('/actors');
              } 
              else 
              { 

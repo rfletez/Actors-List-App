@@ -6,20 +6,24 @@ import axios from "axios";
 function RegisterActorComponent() {
 
     const [firstName, setFirstname] = useState("");
-    const [lastName, setLastName] = useState("");
+    const [lastName, setLastname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const navigate = useNavigate();
 
     async function save(event) {
         event.preventDefault();
         try {
-          await axios.post("http://localhost:8086/api/v1/users/save", {
+          await axios.post("http://localhost:8086/api/v1/actors/", {
             first_name: firstName,
-            email: email,
-            password: password,
+            last_name: lastName,
+            email_id: email,
+            password: password
           });
-          alert("User Registation Successfully");
+
+          //alert("User Registation Successfully");
+          navigate('/actors');
         } 
         catch (err) {
           alert(err);
@@ -36,11 +40,22 @@ function RegisterActorComponent() {
                 <form>
                     <div class="form-group">
                         <label>First name</label>
-                        <input type="text"  class="form-control" id="username" 
-                            placeholder="Enter Name"
-                            value={username}
+                        <input type="text"  class="form-control" id="first_name" 
+                            placeholder="Enter First Name"
+                            value={firstName}
                             onChange={(event) => {
                                 setFirstname(event.target.value);
+                            }}
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Last name</label>
+                        <input type="text"  class="form-control" id="last_name" 
+                            placeholder="Enter Last Name"
+                            value={lastName}
+                            onChange={(event) => {
+                                setLastname(event.target.value);
                             }}
                         />
                     </div>
