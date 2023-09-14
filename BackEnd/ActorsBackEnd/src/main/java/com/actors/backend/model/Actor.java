@@ -37,6 +37,13 @@ public class Actor {
 	@NotEmpty(message = "Email address cannot be empty")
 	private String emailId;
 	
+	@Column(name = "password")
+	@NotNull(message = "Password cannot be null")
+	@NotEmpty(message = "Password cannot be empty")
+	@Size(min = 5, max = 50, message = "Password must be between 5 and 50 characters long")
+	private String password;
+	
+	
 	public Actor() {
 		/*Default constructors are needed because Hibernate internally uses proxies
 		 * to create proxy objects.*/
@@ -76,4 +83,18 @@ public class Actor {
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
+
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "Actor [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId=" + emailId
+				+ ", password=" + password + "]";
+	}
+	
 }
