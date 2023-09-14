@@ -6,6 +6,7 @@ import axios from "axios";
 function LoginActorComponent() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
     const navigate = useNavigate();
 
     async function login(event) {
@@ -27,7 +28,7 @@ function LoginActorComponent() {
              { 
                 navigate('/home');
              } 
-              else 
+             else 
              { 
                 alert("Incorrect Email and Password not match");
              }
@@ -40,7 +41,7 @@ function LoginActorComponent() {
           alert(err);
         }
       
-      }
+    }
     
     return(
         <div>

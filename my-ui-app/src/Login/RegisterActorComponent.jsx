@@ -5,7 +5,8 @@ import axios from "axios";
 
 function RegisterActorComponent() {
 
-    const [username, setUsername] = useState("");
+    const [firstName, setFirstname] = useState("");
+    const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -14,7 +15,7 @@ function RegisterActorComponent() {
         event.preventDefault();
         try {
           await axios.post("http://localhost:8086/api/v1/users/save", {
-            user_name: username,
+            first_name: firstName,
             email: email,
             password: password,
           });
@@ -34,12 +35,12 @@ function RegisterActorComponent() {
             
                 <form>
                     <div class="form-group">
-                        <label>User name</label>
+                        <label>First name</label>
                         <input type="text"  class="form-control" id="username" 
                             placeholder="Enter Name"
                             value={username}
                             onChange={(event) => {
-                                setUsername(event.target.value);
+                                setFirstname(event.target.value);
                             }}
                         />
                     </div>
